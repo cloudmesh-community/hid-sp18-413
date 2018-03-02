@@ -1,5 +1,5 @@
 
-###Completed.
+##Completed.
 
 * 1/11 Posted Bio
 * 1/15 Went over handbook.
@@ -10,13 +10,13 @@
 * 02/15-25 Technology abstarct .TEX document and various corrections.
 * 02/18 Duplicated Swagger from Handbook.
 
-###In Progress.
+##In Progress.
 
 * 02/28  Read and implement Rest using Swagger
 * 03/05 Watch videos and slides for Cloud Computing from Handbook.
 * 03/08 Gather information to write technology paper.
 
-###Zoom Meetings Attended.
+##Zoom Meetings Attended.
 
 * 01/19 
 * 01/28  
@@ -25,13 +25,13 @@
 * 02/19
 * 02/28
 
-###Environment Setup:
+##Environment Setup:
 * 01/20 Oracle Virtual Box
 * 01/25 Install Ubuntu, Python, Pyenv, 
 * 02/03 Reinstall Ubuntu, python, pyenv, sshfs
 * 02/05 Install Eve, mongodb, python libraries.
 
-###Self Learning
+##Self Learning
 * 01/24 - 01/28 Read Python data types.
 * 01/20 - Read about Eve
 * 02/03 - 02/05 Python functions and looping
