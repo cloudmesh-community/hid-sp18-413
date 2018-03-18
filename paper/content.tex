@@ -48,7 +48,6 @@ language and puppet platform. In contrast to procedural language, desired client
 configuration is described in Puppet Domain Specific language and it is applied
 via catalogues. Puppet master compiles the catalogue which is applied on servers
 running puppet agents. Puppet employs idempotency meaning it does not apply anychanges if system is already in desired state.
-~\cite{editor00}.
 
 \section{Puppet Architecture}
 Puppet works in standalone and master agent configuration. Puppet works in two
@@ -61,12 +60,13 @@ ssl. Agents ssl certificates must be verified by master for them to
 communicate~\cite{hid-sp18-413-puppet-architecture}. \par
 Puppet can also work in standalone mode. In standalone mode puppet apply is used
 to apply the catalogues. In smaller organisations which cannot have dedicated
-puppet masters and puppetdb, standalone configuration works just fine although  standalone mode comes with its own sets of prolems and
-is usually not recommended. Standalone mode is decentralized and configuration
-change on multiple devices need to be run individually and then synced with
-other devices. Cpu and memory utilization will be high. If running puppetdb it
-is much easier to run reports and query resources, with standalone agents, it is
-not possible. 
+puppet masters and puppetdb, standalone configuration works just fine although
+standalone mode comes with its own sets of prolems and is usually not
+recommended. Standalone mode is decentralized and configuration change on
+multiple devices need to be run individually and then synced with other
+devices. Cpu and memory utilization will be high. If running puppetdb it is much
+easier to run reports and query resources, with standalone agents, it is not
+possible.
 
 \section{Puppet Language}
 
@@ -142,7 +142,7 @@ each environment and module enabling users to change default values
 without having to change anything in the actual code.
 
 \section{Puppet DB}
-Puppet DB~\cite{hid-sp18-413-puppetdb} is the central database for infrsatructures running pupperdb.  It
+Puppet DB~\cite{hid-sp18-413-puppet-db} is the central database for infrsatructures running pupperdb.  It
 stores the most recent facts from all agents, most recent catalogues and reports
 from all agents. With catalogues being stored on puppetdb, puppet master is free
 to run more catalogues which is specially helpful in large infrastructures. With
@@ -154,7 +154,7 @@ built in API that can be used to query resources and metrices effectivly.
 Puppet runs can fail due to multiple reasons~\cite{hid-sp18-413-puppet-monitoring}. Agent failure, network
 disruption, server error etc. It becomes necessary to monitor puppet
 uns. Puppet logs itslast run status into
-lastrunsummary.yaml. RegistrationMetaData plugin for mongodb~\cite{hid-sp18-413-mongodb} and
+lastrunsummary.yaml. RegistrationMetaData plugin for mongodb~\cite{hid-sp18-413-puppet-mongodb} and
 mcollective~\cite{hid-sp18-413-puppet-mcollective} can be used to store all logs from
 agents into a central mongodb database. This is turn can be monitored
 and visualized using graphana or other softwares. Puppet has extensive
