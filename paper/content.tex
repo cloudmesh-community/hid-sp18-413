@@ -1,0 +1,209 @@
+\title{Puppet}
+
+
+\author{Anubhav Lavania}
+\affiliation{%
+  \institution{Indiana University}
+  \streetaddress{Smith Research Center}
+  \city{Bloomington} 
+  \state{IN} 
+  \postcode{47408}
+  \country{USA}}
+\email{alavania@iu.edu}
+
+
+% The default list of authors is too long for headers}
+\renewcommand{\shortauthors}{G. v. Laszewski}
+
+
+\begin{abstract}
+  This paper provides a brief summary of Puppet and briefly discusses its
+  implementation with Kubernetes.Puppet is a open source software configuration
+  and automation tool. It is written in C++ and Clojure. Puppet is a declarative
+  language and uses domain specific language for configuration. Puppet uses
+  facter to gather information about the system and user defines the desired
+  state. Puppet does not use sequential programming where order of execution is
+  key but uses graphical representation to represent the order of
+  execution. Resources are defined in manifests written in Domain specific
+  language. These manifests are complied into catalogue on puppet master and
+  supplied to puppet clients. These catalogues are only applied if actual and
+  desired states are different.Kubernetes is cluster manager from googl and
+  puppet makes it easy to manage the kubernetes resources. Puppet is
+  declarative, modular, has code testing features and therefore managing
+  kubernetes with it is easier.
+\end{abstract}
+
+\keywords{hid-sp18-413, puppet, Kubernetes}
+
+
+\maketitle
+
+
+
+\section{Introduction}
+
+Puppet is configuration management and automation software that works in a
+standalone or client server mode. Puppet is made up of two parts, puppet
+language and puppet platform. In contrast to procedural language, desired client
+configuration is described in Puppet Domain Specific language and it is applied
+via catalogues. Puppet master compiles the catalogue which is applied on servers
+running puppet agents. Puppet employs idempotency meaning it does not apply anychanges if system is already in desired state.
+~\cite{editor00}.
+
+\section{Puppet Architecture}
+Puppet works in standalone and master agent configuration. Puppet works in two
+steps, first by compiling a catalogue and second by applying it. When puppet is
+working in master agent configuration, agent requests the catalogue, master
+complies and it is then applied on the agent. On the agent node puppet agent
+checks the catlogue for the resources and if any is not in desired state,
+changes are applied. Communication between puppet agent and master is https via
+ssl. Agents ssl certificates must be verified by master for them to
+communicate~\cite{hid-sp18-413-puppet-architecture}. \par
+Puppet can also work in standalone mode. In standalone mode puppet apply is used
+to apply the catalogues. In smaller organisations which cannot have dedicated
+puppet masters and puppetdb, standalone configuration works just fine although  standalone mode comes with its own sets of prolems and
+is usually not recommended. Standalone mode is decentralized and configuration
+change on multiple devices need to be run individually and then synced with
+other devices. Cpu and memory utilization will be high. If running puppetdb it
+is much easier to run reports and query resources, with standalone agents, it is
+not possible. 
+
+\section{Puppet Language}
+
+Puppet is a declarative language. User defines the end state or desired state of
+system and is not bothered by how that state is reached for example to install
+open-shh different operating systems will use different package manager like
+apt-get, yum, pkgadd or msi and then define the steps of how installation should
+proceed.In puppet you declare that for example package open-ssh should be
+prsesent and same code will work on various operating systems. This is achived
+by defining resources using types, attributes, values and metaparameters~\cite{hid-sp18-413-puppet-language}.  Resource describes the resource to
+me managed and it could be package, user, service etc.Puppet groups similar
+types of resources into types. Users fall into one type, files into another and
+services into another. Title of resource
+distinguishes a resource from other resources. These must be unique for example openssh.  Attribute
+describe the desired state of resource. For example ensure, present, owner,
+file.  Attributes have values which define the desired state of attribute for
+example, mode, present, mode.  Metaparametres like before and require (Define
+dependency relationships) File resource defines source to get config to be
+deployed on agents.
+Variables in puppet are infact constants and can be assigned any value from
+multiple data types. Varables in local scope are available locally and to child
+scopes and any value assigned from outer scopes is overrulled. Out of scope
+varables are assigned by using qualified name of its scope.Variables in puppet
+are immutable meaning value of varaiable cannot be changed in its scope. But
+same variable name can have a different value in another scope.
+
+
+\section{Puppet Modules}
+
+Similar to any other programming language Puppet makes use of modules
+to wtite reusable and modular code~\cite{hid-sp18-413-puppet-modules}.Puppets
+module are collection of classes, resource types, files and templates. Puppet
+has a rich library of existing modules that are freely available to use. In
+addition to existing modules users can create their own modules. Puppet follows a directory
+structure for defining modules and they must be ordered. Each puppet
+module must have a valid name and must be located in module path. When
+looking for modules puppet searches module path and makes all
+classes and resources available for all modules in the path. Following
+is puppet's module directory structure.
+Mymodule is My module name.
+Manifests contains all manifests.
+Init.pp is the main class definition file and class definition  must have the same name as module.
+Other.pp contains a class mymodule other.pp
+Files contains config files to be used by clients.
+Facter contains custom facts.
+Each manifest in manifests folder should have only one class definition that maps to corresponding file name.
+Files in modules use three backslashes to point to file location in files directory.
+Templates in modules are used to render output to a file recourse or be used as a variable.
+
+\section{Puppet Facter}
+
+Facter is a tool used by puppet to gather all the environment
+variables in a system~\cite{hid-sp18-413-puppet-facter}. Facter comes packaged with puppet agent and
+stores the environment variables in key value pair. When agent
+requests catalogue from puppet server these facts are available as
+variables. Because facts in a operating systems are defined by its
+environment varaibles, they are sometimes not enough. Puppets
+provides the ability to write custom facts in ruby and these can then
+be made available to all puppet clients.
+
+\section{Puppet Heira}
+
+Puppets heira data is used to separate puppet code from configuration
+data. Heira enables puppet's code to be reusable.y seperating
+configuration data from code Heira enables configuration to be applied
+to different environments without change in code. Heira configuration
+is defined in heira.yaml,  hierarchical data look up is defined in
+heiarchy section and  data dir defines where thesearch  path should
+begin. Heira enables puppet code to be more modular and different
+configurations can be applied to different systems in a more efficient
+way. Newest feature of Heira enables heirarchial configurations for
+each environment and module enabling users to change default values
+without having to change anything in the actual code.
+
+\section{Puppet DB}
+Puppet DB~\cite{hid-sp18-413-puppetdb} is the central database for infrsatructures running pupperdb.  It
+stores the most recent facts from all agents, most recent catalogues and reports
+from all agents. With catalogues being stored on puppetdb, puppet master is free
+to run more catalogues which is specially helpful in large infrastructures. With
+the use of puppet DB performance of Puppet infrastructure is enhanced many
+folds. Puppet DB serves as a secure storage for all puppet data and comes with a
+built in API that can be used to query resources and metrices effectivly.
+
+\section{Puppet Monitoring}
+Puppet runs can fail due to multiple reasons~\cite{hid-sp18-413-puppet-monitoring}. Agent failure, network
+disruption, server error etc. It becomes necessary to monitor puppet
+uns. Puppet logs itslast run status into
+lastrunsummary.yaml. RegistrationMetaData plugin for mongodb~\cite{hid-sp18-413-mongodb} and
+mcollective~\cite{hid-sp18-413-puppet-mcollective} can be used to store all logs from
+agents into a central mongodb database. This is turn can be monitored
+and visualized using graphana or other softwares. Puppet has extensive
+logs both for servers and agents and another option it to use
+elasticsearch, logstatsh and kibana (ELK) stack. Elasticsearch will
+perform the indexing and Kibana using Lucene can be used to query logs.
+
+\section{Puppet and Kubernetes}
+
+Kubernetes is Google’s cluster manager and coupled with configuration
+management software like puppet it makes managing POD’s, replication
+controllers and services easier. Puppet is known for configuring
+agents files, resources or services but with kubernetes module it
+extends its functionality to easily manage different kubernetes types
+like node, event, service, resource quota. Main advantage of using
+puppet lies in idempotency i.e if kubernetes is already in desired
+state, no changes will be applied. Interface for puppet’s code is
+exactly  the same YAML format as
+kubernetes~\cite{hid-sp18-413-puppet-kubernetes}. Puppets current
+kubernetes module supports configuring pod, service,
+replication controller, node, events, endpoint, namespace, secret,
+resource quota, limit range and persistant volume.
+Puppet’s kubernets module uses kubeclient library to communicate
+withkubernetes.''This module includes a configuration tool called kubetool to auto generate all the security parameters, the bootstrap token, and other configurations for your Kubernetes cluster into a Hiera file. The tool is available as a Docker image to simplify installation and use.''~\cite{hid-sp18-413-puppet-kubeclient}
+Puppet’s familiar code can be used to configure different kubernetes
+resource types.Kubetool creates a YAML file and it should be placed in heira directory. Kubernetes module allows for buisness specific cases
+to be implemented. Resource needs to be declared ones and matching
+resources can then be spun without describing full state from
+beginning. 
+
+\section{Conclusion}
+
+Puppet is a very powerful tool and programming language for configuring and
+managing ever changing computer systems. Infrastrucure as code is the main
+principle behind puppets ideology. Puppet gives you the ability to run it in
+simulation mode and therefore if things are not as desired it is easy to
+rollback. Many organisations use puppet for small tasks and as skills enhance i
+can be used to manage biggest of infrastructures thus letting users take baby
+steps first.Main advantage of puppet lies in the fact that if system is already
+in desired state nothing will be changed and deployed. With the fast advent and
+advances in cloud computing Puppet is coming to the forefront in helping to
+manage and automate vastly huge infrastructures.
+
+\begin{acks}
+
+  The authors would like to thank Dr.~Gregor~von~Laszewski for his support and
+  suggestions to write this paper.
+
+\end{acks}
+
+\bibliographystyle{ACM-Reference-Format} \bibliography{report}
+
