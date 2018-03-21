@@ -167,22 +167,22 @@ perform the indexing and Kibana using Lucene can be used to query logs.
 
 \section{Puppet and Kubernetes}
 
-Kubernetes is Google’s cluster manager and coupled with configuration
-management software like puppet it makes managing POD’s, replication
+Kubernetes is Google's cluster manager and coupled with configuration
+management software like puppet it makes managing POD's, replication
 controllers and services easier. Puppet is known for configuring
 agents files, resources or services but with kubernetes module it
 extends its functionality to easily manage different kubernetes types
 like node, event, service, resource quota. Main advantage of using
 puppet lies in idempotency i.e if kubernetes is already in desired
-state, no changes will be applied. Interface for puppet’s code is
+state, no changes will be applied. Interface for puppet's code is
 exactly  the same YAML format as
 kubernetes~\cite{hid-sp18-413-puppet-kubernetes}. Puppets current
 kubernetes module supports configuring pod, service,
 replication controller, node, events, endpoint, namespace, secret,
 resource quota, limit range and persistant volume.
-Puppet’s kubernets module uses kubeclient library to communicate
+Puppet's kubernets module uses kubeclient library to communicate
 withkubernetes.''This module includes a configuration tool called kubetool to auto generate all the security parameters, the bootstrap token, and other configurations for your Kubernetes cluster into a Hiera file. The tool is available as a Docker image to simplify installation and use.''~\cite{hid-sp18-413-puppet-kubeclient}
-Puppet’s familiar code can be used to configure different kubernetes
+Puppet's familiar code can be used to configure different kubernetes
 resource types.Kubetool creates a YAML file and it should be placed in heira directory. Kubernetes module allows for buisness specific cases
 to be implemented. Resource needs to be declared ones and matching
 resources can then be spun without describing full state from
