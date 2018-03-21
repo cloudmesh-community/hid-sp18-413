@@ -12,12 +12,13 @@
 * 3/05 Watch videos and slides for Cloud Computing from Handbook.
 * 03/08 Gather information to write technology paper.
 * 03/17 Submit paper
+* 03/24 watch container videos
+* 03/31 completed install of 3 Rpi's withh ssh keys and docker swarm.
+* 03/31 submit tutorial
 
 ## In Progress.
-
-* 02/28  Read and implement Rest using Swagger.
-* 03/19 Watch container videos
-* 03/21 Start workng on two tutorials.
+* Create tex document for project work.
+* 
 ## Zoom Meetings Attended.
 
 * 01/19 
@@ -26,6 +27,8 @@
 * 02/12  
 * 02/19
 * 02/28
+* 03/15
+* 04/02
 
 ## Environment Setup:
 * 01/20 Oracle Virtual Box.
