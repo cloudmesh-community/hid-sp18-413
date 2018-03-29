@@ -1,7 +1,11 @@
-## Mongoengine: 
-### Introduction:
+## Mongoengine
+
+### Introduction
+
 MongoEngine is a document mapper for working with mongoldb with python. To be able to use mongo engine MongodD should be already installed and running. 
-### Install and connect.
+
+### Install and connect
+
 Mongoengine can be installed by running:     
 `pip install mongo engine`  
 This will install six, pymongo and mongoengine.
@@ -10,7 +14,9 @@ To connect to mongoldb use connect () function by specifying mongoldb instance n
 `connect (‘student_db’)`.  
 If mongodb is running on a port different from default port , port number and host need to be specified.
 If mongoldb needs authentication username and password need to be specified.
-###  Basics:
+
+###  Basics
+
 Mongodb does not enforce schemas. Comparing to RDBMS, Row in mongoldb is called a “document” and table can be compared to “Collection”. 
 Defining a schema is helpful as it minimizes coding error’s. To define a schema we create a class that inherits from document.
 
