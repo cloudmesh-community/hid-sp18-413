@@ -1,7 +1,7 @@
 
 ### Rest Service with SWAGGER.
 
-#### Makefile should be placed in service directory.
+#### Makefile, mem.yaml, requirements.txt, default_controllers.py should be placed in service directory.
 * make service -- To download swagger code and generate code.
 * make run -- To run swagger service ctreated in above step.
 * make test -- To test service.
