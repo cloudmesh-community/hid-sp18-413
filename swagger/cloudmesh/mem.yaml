@@ -1,0 +1,56 @@
+swagger: '2.0'
+info:
+  version: 0.0.1
+  title: MemoryInformation
+  description: >-
+    A simple service to get system Memory Information
+    using swagger -2.0 specification and codegen
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    name: Cloudmesh REST Service
+  license:
+    name: Apache
+host: 'localhost:8080'
+basePath: '/cloudmesh/mem'
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  '/memorydetails':
+    get:
+      description: "Returns memory space information of the hosting server"
+      produces: 
+        - "application/json"
+      responses:
+        '200':
+          description: 'Memroy utilization'
+          schema:
+            $ref: '#/definitions/MEMORY'
+  '/swap':
+    get:
+      description: "Swap information of the hosting server"
+      produces: 
+        - "application/json"
+      responses:
+        '200':
+          description: 'Swap Space details'
+          schema:
+            $ref: '#/definitions/SWAP'
+definitions:
+  MEMORY:
+    type: object
+    required:
+      - size
+    properties:
+        size: 
+          type: string
+  SWAP:
+    type: object
+    required:
+      - size
+    properties:
+      size:
+        type: string
