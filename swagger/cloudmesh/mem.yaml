@@ -21,7 +21,7 @@ produces:
 paths:
   '/memorydetails':
     get:
-      description: "Returns memory space information of the hosting server"
+      description: "Returns memory information of the hosting server"
       produces: 
         - "application/json"
       responses:
