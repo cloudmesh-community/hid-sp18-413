@@ -11,5 +11,6 @@ This will run python program and present an output of time taken to run kmeans c
 
 #### Issues faced.
 * Docker image created on linux VM running on x86 architecture does not run on raspberrypi. Needed to create a seperate image on raspberrypi and upload to dockerhub (anulav2/anubhav_sklearn\_pi)
+<<<<<<< HEAD
 *  ![This is my 3pi node ls](hid-sp18-413/project-paper/images/dockernodels.png). 
 *  Got error when running eve based rest service and displaying programs output in browser.Error being "TypeError: 'numpy.ndarray' object is not callable". Therefore was not able to implement the service on docker swarm.  
