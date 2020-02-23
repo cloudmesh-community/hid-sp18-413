@@ -1,5 +1,7 @@
-connexion == 1.1.15
+werkzeug==0.16.1 
+connexion[swagger-ui]
+psutil==5.7.0
 python_dateutil == 2.6.0
 typing == 3.5.2.2
 setuptools >= 21.0.0
-psutil >= 5.4.5
+
