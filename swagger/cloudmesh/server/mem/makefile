@@ -1,3 +1,4 @@
+#install python-devel-x86_64 for testing on local environment.
 SWAGGERCODEGEN=java -jar swagger-codegen-cli-2.3.1.jar
 YAML=mem.yaml
 
@@ -10,8 +11,8 @@ service:
 	mv default_controller.py swagger_server/controllers/default_controller.py
 
 run:		
-	pip install -r requirements.txt && \
-	sudo python setup.py install && python -m swagger_server
+	pip3 install -r requirements.txt && \
+	sudo python3.6 setup.py install && python3.6 -m swagger_server
 
 test:	
     	
